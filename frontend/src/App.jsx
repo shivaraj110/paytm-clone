@@ -1,11 +1,10 @@
-import './App.css'
 import {
   BrowserRouter, Routes , Route,
 } from 'react-router-dom'
-import Signup from './components/Signup'
-import Signin from './components/Signin'
-import SendMoney from './components/SendMoney'
-import Dashboard from './components/Dashboard'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import SendMoney from './pages/SendMoney'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
