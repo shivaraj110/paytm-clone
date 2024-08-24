@@ -9,9 +9,13 @@ const { JWT_SECRET } = require('../config');
 router.post("/signup",async(req,res)=>{
     const userPayload = req.body
     const isValid = userValidator.safeParse(userPayload)
-    if(!isValid.success){
+   try{ if(!isValid.success){
         res.status(411).json({
-            msg : 'invalid inputs'
+            msg : 'invalid inputs',
+            uname : userPayload.username,
+            fname : userPayload.firstName,
+            lname : userPayload.lastName,
+            pass : userPayload.password
         })
     }
    const foundUser = await User.findOne({
@@ -44,7 +48,11 @@ router.post("/signup",async(req,res)=>{
         msg : 'user created successfully!',
         token : token,
         balance : balance
-    })
+    })}
+    catch(e){
+        console.log('signup error: ' + e);
+        
+    }
 })
 
 router.post("/signin",async (req,res)=>{
