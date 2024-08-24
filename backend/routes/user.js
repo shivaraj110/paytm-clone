@@ -65,7 +65,8 @@ router.post("/signin",async (req,res)=>{
         },JWT_SECRET)
         res.json({
             msg : 'signed in!',
-            token: token
+            token: token,
+            fname : user.firstName
         })
         return
     }
@@ -123,5 +124,20 @@ router.get("/bulk",authMiddleware, async (req, res) => {
         }))
     })
 })
+router.get('/',authMiddleware, async (req,res) => {
+    const userId = req.userId
+    try {   const foundUser = await User.findOne({
+            _id : userId
+            })
+            res.json({
+                user : foundUser.firstName
+            })
+        }
+catch{
+    res.status(411).json({
+        msg : 'something went wrong!'
+    })
+}
 
+})
 module.exports = router;
