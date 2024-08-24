@@ -1,4 +1,3 @@
-// backend/routes/user.js
 const express = require('express');
 const router = express.Router();
 const { User, BankAccount } = require("../db");
@@ -99,25 +98,30 @@ router.put("/",authMiddleware ,async (req,res) => {
 
 // filter for getting users in db
 
-router.get("/bulk",authMiddleware,async(req,res) => {
+router.get("/bulk",authMiddleware, async (req, res) => {
     const filter = req.query.filter || ""
+
     const users = await User.find({
-        $or : [{
+        $or: [{
             firstName : {
-                '$regex' : filter
-            },
-            lastName : {
-                '$regex' : filter
+                "$regex" : filter
+            }
+        },
+        {
+        lastName : {
+                "$regex" : filter
             }
         }]
     })
+
     res.json({
         user : users.map(user => ({
             username : user.username,
             firstName : user.firstName,
             lastName : user.lastName,
-            userId : user._id
+            _id : user._id
         }))
     })
 })
+
 module.exports = router;

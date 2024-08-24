@@ -4,23 +4,29 @@ const { BankAccount } = require("../db")
 const { default: mongoose } = require('mongoose')
 const router = express.Router()
 router.get("/balance",authMiddleware,async (req,res) => {
-    const acc = await BankAccount.findOne({
+    try{const acc = await BankAccount.findOne({
         userId : req.userId
     })
     res.json({
         balance : acc.balance
     })
+}
+catch{
+    res.status(411).json({
+        msg: 'invalid transfer... try again!'
+    })
+}
 })
-
 router.post("/transfer",authMiddleware,async (req,res) => {
+    try{
     const session = await mongoose.startSession()
     session.startTransaction()
-
+    const amt  = Number(req.body.ammount)
     const fromAcc  = await BankAccount.findOne({
         userId : req.userId
     }).session(session)
 
-    if(!fromAcc || fromAcc.balance < req.body.ammount){
+    if(!fromAcc || fromAcc.balance < amt){
         await session.abortTransaction()
        return res.status(400).json({
             msg : 'no account found or insufficient balance'
@@ -32,7 +38,7 @@ router.post("/transfer",authMiddleware,async (req,res) => {
         userId : req.userId
     },{
         $inc : {
-            balance : -req.body.ammount
+            balance : -amt
         }
     }).session(session)
 
@@ -41,7 +47,7 @@ router.post("/transfer",authMiddleware,async (req,res) => {
         userId : toId
     },{
         $inc : {
-            balance : req.body.ammount
+            balance : amt
         }
     }).session(session)
 
@@ -50,7 +56,16 @@ router.post("/transfer",authMiddleware,async (req,res) => {
 res.json({
     msg : 'transaction successful!'
     })
+}
+catch(e){
+res.status(411).json({
+    msg : 'transaction failed!'
 })
+console.log("err :"+e);
+
+}
+}
+)
 
 
 module.exports = router
