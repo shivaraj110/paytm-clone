@@ -46,7 +46,10 @@ router.post("/signup",async(req,res)=>{
     res.status(200).json({
         msg : 'user created successfully!',
         token : token,
-        balance : balance
+        balance : balance,
+        fname : user.firstName,
+        lname : user.lastName,
+        email : user.username,
     })}
     catch(e){
         console.log('signup error: ' + e);
@@ -66,7 +69,9 @@ router.post("/signin",async (req,res)=>{
         res.json({
             msg : 'signed in!',
             token: token,
-            fname : user.firstName
+            fname : user.firstName,
+            lname : user.lastName,
+            email : user.username,
         })
         return
     }

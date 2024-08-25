@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useRecoilState } from "recoil"
+import { currUserBalAtom } from "../atoms/currUserBal"
 
 export const Balance = () => {
-    const[balance,setBalance] = useState(0)
     const token = localStorage.getItem("token")
+    const [bal,setBal] = useRecoilState(currUserBalAtom)
     useEffect(()=>{
             axios.get("http://localhost:3000/api/v1/account/balance",{
             headers:{
@@ -11,7 +13,7 @@ export const Balance = () => {
             }
         }
     ).then(res=>{
-        setBalance(res.data.balance)
+        setBal(res.data.balance)
     })
     },[token])
     return <div className="flex">
@@ -19,7 +21,8 @@ export const Balance = () => {
             Your balance
         </div>
         <div className="font-semibold ml-4 text-lg">
-            Rs {balance}
+            Rs {bal}
+            {}
         </div>
     </div>
 }

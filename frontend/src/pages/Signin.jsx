@@ -29,7 +29,9 @@ export default function Signin() {
                                 password : password
                               })
                               alert(res.data.msg)
-                              nav("/dashboard?name="+res.data.fname)
+                              nav("/dashboard?name="+res.data.fname +"&email=" + username +"&lname=" + res.data.lname)
+                                alert(username)
+                              
                               localStorage.setItem("token",res.data.token)
                             }
                           }
