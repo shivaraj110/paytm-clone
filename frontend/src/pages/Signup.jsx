@@ -6,6 +6,8 @@ import Subheading from "../components/Subheading";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { currUserBalAtom } from "../atoms/currUserBal";
 
     export default function Signup(){
         const nav = useNavigate()
@@ -13,6 +15,7 @@ import axios from "axios";
         const [lastName,setLname] = useState("")
         const [username,setUsername]= useState("")
         const [password,setPass]= useState("")
+        const [bal,setBal] = useRecoilState(currUserBalAtom)
         return <div className="bg-slate-300 h-screen flex justify-center items-center">
                   <div className="felx flex-col justify-center ">
                         <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
@@ -38,7 +41,7 @@ import axios from "axios";
                 lastName  : lastName,
                 password  : password
             })
-            res.data.msg === 'user created successfully!' ? alert(res.data.msg) & nav("/dashboard?name="+firstName) : null
+            res.data.msg === 'user created successfully!' ? alert(res.data.msg) &  nav("/dashboard?name="+firstName +"&email=" + username +"&lname=" + lastName) & setBal(res.data.balance) : null
             localStorage.setItem("token", res.data.token)
             }
             catch(e){
