@@ -30,14 +30,14 @@ export default function changepass(){
         }}  className="border rounded p-1 border-slate-700 "/>
             </div>
             <div className="p-2">
- <input type="text" placeholder="Confirm the new password" onChange={ e=> {
+ <input type="text" placeholder="Confirm the new password" onChange={ e => {
             setVerPass(e.target.value)
         }}  className="border rounded p-1 border-slate-700 "/>
             </div>
         <div className="flex">
         <Button label={"change password"} onClick={
             ()=>{
-                {pass & newPass & verPass ? PutPass(newPass) : alert("invalid attempt")}
+                {pass !== "" & newPass !== "" & verPass !== "" ? PutPass(newPass) : alert("invalid attempt")}
             }
     }/>
         </div>
