@@ -9,6 +9,7 @@ import Me from './pages/Me'
 import Settings from './components/Settings'
 import Logout from './components/Logout'
 import ChangePass from './components/ChangePass'
+import ChangeEmail from './components/ChangeEmail'
 function App() {
   return (
 <>
@@ -22,6 +23,8 @@ function App() {
   <Route path='/settings' element={<Settings/>}/>
   <Route path='/logout' element={<Logout/>}/>
   <Route path='/changepass' element={<ChangePass/>}/>
+  <Route path='/changeEmail' element={<ChangeEmail/>}/>
+
 </Routes>
 </BrowserRouter>
 </>
