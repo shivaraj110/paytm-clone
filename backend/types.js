@@ -8,7 +8,9 @@ const userValidator = zod.object({
 const updateBody = zod.object({
     password : zod.string().optional(),
     firstName : zod.string().optional(),
-    lastName : zod.string().optional()
+    lastName : zod.string().optional(),
+    username  : zod.string().email().optional()
+
 })
 module.exports = {
     userValidator , updateBody

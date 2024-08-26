@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User, BankAccount } = require("../db");
 const { authMiddleware } = require("../middleware");
-const { userValidator } = require("../types");
+const { userValidator ,updateBody } = require("../types");
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 router.post("/signup",async(req,res)=>{
@@ -95,7 +95,8 @@ router.put("/",authMiddleware ,async (req,res) => {
     await User.updateOne({
         firstName : updatePlayload.firstName,
         lastName : updatePlayload.lastName,
-        password : updatePlayload.password
+        password : updatePlayload.password,
+        username : updatePlayload.username
     })
     res.json({
         msg : 'updated the user info!'

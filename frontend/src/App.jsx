@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import Me from './pages/Me'
 import Settings from './components/Settings'
 import Logout from './components/Logout'
+import ChangePass from './components/ChangePass'
 function App() {
   return (
 <>
@@ -20,7 +21,7 @@ function App() {
   <Route path='/me' element={<Me/>}/>
   <Route path='/settings' element={<Settings/>}/>
   <Route path='/logout' element={<Logout/>}/>
-
+  <Route path='/changepass' element={<ChangePass/>}/>
 </Routes>
 </BrowserRouter>
 </>
