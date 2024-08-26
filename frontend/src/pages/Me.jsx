@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { useRecoilValue } from "recoil"
 import { currUserBalAtom } from "../atoms/currUserBal"
 export default function Me(){
@@ -7,11 +7,23 @@ export default function Me(){
     const email = searchParams.get("email")
     const lname = searchParams.get("lname")
     const balance = useRecoilValue(currUserBalAtom)
-
+    const nav = useNavigate()
     return  <div className="bg-slate-300 h-screen flex justify-center items-center">
         <div className="shadow h-14 flex justify-between fixed top-0 left-0 right-0 bg-white">
         <div className="flex flex-col justify-center font-semibold h-full ml-4">
-            PayTM App
+            <div className="grid grid-cols-3">
+                           <div className="mr-2" > PayTM </div> <div className="flex flex-col justify-center font-semibold h-full cursor-pointer" onClick={() => {
+            nav('/settings')
+        }}>
+                  settings
+        </div>
+        <div className="flex flex-col justify-center font-semibold h-full cursor-pointer ml-3" onClick={() => {
+            nav('/logout')
+        }}>
+                  logout
+        </div>
+            </div>
+
         </div>
         </div>
     <div className="felx flex-col justify-center ">

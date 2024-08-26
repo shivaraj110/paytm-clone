@@ -6,6 +6,8 @@ import Signin from './pages/Signin'
 import SendMoney from './pages/SendMoney'
 import Dashboard from './pages/Dashboard'
 import Me from './pages/Me'
+import Settings from './components/Settings'
+import Logout from './components/Logout'
 function App() {
   return (
 <>
@@ -16,6 +18,9 @@ function App() {
   <Route path='/send' element={<SendMoney/>}/>
   <Route path='/dashboard' element={<Dashboard/>}/>
   <Route path='/me' element={<Me/>}/>
+  <Route path='/settings' element={<Settings/>}/>
+  <Route path='/logout' element={<Logout/>}/>
+
 </Routes>
 </BrowserRouter>
 </>

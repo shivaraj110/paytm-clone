@@ -5,8 +5,21 @@ export const Appbar = ({name , props}) => {
     const nav = useNavigate()
     return <div className="shadow h-14 flex justify-between fixed top-0 left-0 right-0 bg-white">
         <div className="flex flex-col justify-center font-semibold h-full ml-4">
-            PayTM App
+            <div className="grid grid-cols-3">
+                           <div className="mr-3" > PayTM </div> <div className="flex flex-col justify-center font-semibold h-full cursor-pointer" onClick={() => {
+            nav('/settings')
+        }}>
+                  settings
         </div>
+        <div className="flex flex-col justify-center font-semibold h-full cursor-pointer ml-3" onClick={() => {
+            nav('/logout')
+        }}>
+                  logout
+        </div>
+            </div>
+
+        </div>
+   
         <div className="flex">
             <div className="flex flex-col justify-center h-full font-semibold mr-4">
                 Hello {name}
