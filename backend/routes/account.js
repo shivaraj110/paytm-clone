@@ -9,6 +9,7 @@ router.get("/balance",authMiddleware,async (req,res) => {
     })
     res.json({
         balance : acc.balance
+        
     })
 }
 catch{
@@ -54,7 +55,7 @@ router.post("/transfer",authMiddleware,async (req,res) => {
     session.commitTransaction()    
     
 res.json({
-    msg : 'transaction successful!'
+    msg : 'transaction successful!',
     })
 }
 catch(e){
