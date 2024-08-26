@@ -16,7 +16,7 @@ export const Balance = () => {
         setBal(res.data.balance)
     })
     },[token])
-    return <div className="flex">
+    return <div className="flex mt-20">
         <div className="font-bold text-lg pl-3">
             Your balance
         </div>

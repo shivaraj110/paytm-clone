@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 export const Appbar = ({name , props}) => {
     
     const nav = useNavigate()
-    return <div className="shadow h-14 flex justify-between">
+    return <div className="shadow h-14 flex justify-between fixed top-0 left-0 right-0 bg-white">
         <div className="flex flex-col justify-center font-semibold h-full ml-4">
             PayTM App
         </div>

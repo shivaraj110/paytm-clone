@@ -14,7 +14,7 @@ export default function Dashboard(){
     }
         return(
             <div>
-                <Appbar name={name} props={props} />
+                <Appbar name={name} props={props}/>
                 <Balance />
                 <Users/>
             </div>
