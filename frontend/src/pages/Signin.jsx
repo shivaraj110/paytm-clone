@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BottomWarning from "../components/BottomWarning";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -30,8 +30,6 @@ export default function Signin() {
                               })
                               alert(res.data.msg)
                               nav("/dashboard?name="+res.data.fname +"&email=" + username +"&lname=" + res.data.lname)
-                                alert(username)
-                              
                               localStorage.setItem("token",res.data.token)
                             }
                           }

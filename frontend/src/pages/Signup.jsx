@@ -45,7 +45,7 @@ import { currUserBalAtom } from "../atoms/currUserBal";
             localStorage.setItem("token", res.data.token)
             }
             catch(e){
-                console.log('fetch error',e);
+                console.log('axios error',e);
                 alert('invalid inputs!')
             }
           }} label={"Sign up"} />
