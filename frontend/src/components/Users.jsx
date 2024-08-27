@@ -1,22 +1,10 @@
 import { useEffect, useState } from "react"
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useFilter from "../hooks/useFilter";
 export const Users = () => {
-    const [user, setUser] = useState([]);
     const [filter,setFilter] = useState("")
-    const token = localStorage.getItem("token")
-    useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`,{
-            headers:{
-                Authorization :'Bearer ' + token
-            }
-        })
-            .then(response => {
-                setUser(response.data.user)
-            })
-    }, [filter])
-        
+    const user = useFilter(filter,0.5)
     return <>
         <div className="font-bold mt-6 text-lg pl-3">
             Users
