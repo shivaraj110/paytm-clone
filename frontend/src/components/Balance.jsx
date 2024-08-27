@@ -8,6 +8,6 @@ export const Balance = () => {
 
             {!value.loading ?        <div className="font-semibold ml-4 text-lg">
              {value.bal}.INR
-             </div> : <div>loading...</div> }
+             </div> : <div className="font-semibold ml-4 text-lg">loading...</div> }
     </div>
 }
