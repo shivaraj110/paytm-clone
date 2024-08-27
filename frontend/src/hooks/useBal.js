@@ -37,5 +37,5 @@ axios.get("http://localhost:3000/api/v1/account/balance",{
     }
     },[token, num])
   
-    return [bal , loading]
+    return {bal , loading}
 }
