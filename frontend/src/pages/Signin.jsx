@@ -6,10 +6,13 @@ import InputBox from "../components/InputBox";
 import Subheading from "../components/Subheading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { authFlag } from "../atoms/authFlag";
 export default function Signin() {
   const [username,setUsername]= useState("")
   const [password,setPass]= useState("")
   const nav = useNavigate()
+  const setAuthFlag = useSetRecoilState(authFlag)
   return (
     <div className="bg-slate-300 h-screen flex justify-center items-center">
       <div className="felx flex-col justify-center ">
@@ -31,6 +34,8 @@ export default function Signin() {
                               alert(res.data.msg)
                               nav("/dashboard?name="+res.data.fname +"&email=" + username +"&lname=" + res.data.lname)
                               localStorage.setItem("token",res.data.token)
+                              setAuthFlag(v => v = true)
+
                             }
                           }
                             />
