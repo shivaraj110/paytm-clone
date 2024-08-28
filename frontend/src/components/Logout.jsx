@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "../atoms/userAtom";
-
+import { authFlag } from "../atoms/authFlag";
 export default function Logout(){
     const nav = useNavigate()
     const setAuthFlag = useSetRecoilState(authFlag)
