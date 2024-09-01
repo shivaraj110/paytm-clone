@@ -1,17 +1,17 @@
-const zod = require('zod')
+const zod = require("zod");
 const userValidator = zod.object({
-    username : zod.string().email(),
-    firstName : zod.string(),
-    lastName : zod.string(),
-    password : zod.string().min(8)
-})
+  username: zod.string().email(),
+  firstName: zod.string(),
+  lastName: zod.string(),
+  password: zod.string().min(8),
+});
 const updateBody = zod.object({
-    password : zod.string().optional(),
-    firstName : zod.string().optional(),
-    lastName : zod.string().optional(),
-    username  : zod.string().email().optional()
-
-})
+  password: zod.string().optional(),
+  firstName: zod.string().optional(),
+  lastName: zod.string().optional(),
+  username: zod.string().email().optional(),
+});
 module.exports = {
-    userValidator , updateBody
-}
+  userValidator,
+  updateBody,
+};
