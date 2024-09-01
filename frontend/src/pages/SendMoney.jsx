@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import TransferBtn from "../components/TransferBtn";
 export default function SendMoney() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
@@ -38,13 +39,13 @@ export default function SendMoney() {
                   }}
                 />
               </div>
-              <button
-                class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full hover:bg-white hover:text-green-500 hover:border hover:border-green-500 bg-green-500 text-white"
+              <div
+                className="flex justify-center"
                 onClick={() => {
                   nav("/authPayment?amount=" + amount + "&id=" + id);
                 }}>
-                Initiate Transfer
-              </button>
+                <TransferBtn />
+              </div>
             </div>
           </div>
         </div>
