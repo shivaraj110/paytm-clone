@@ -14,9 +14,9 @@ export default function Signin() {
   const nav = useNavigate();
   const setAuthFlag = useSetRecoilState(authFlag);
   return (
-    <div className="bg-slate-300 h-screen flex justify-center items-center">
-      <div className="felx flex-col justify-center ">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+    <div className="bg-slate-300 h-screen flex justify-center items-center ">
+      <div className="felx flex-col justify-center shadow-md hover:shadow-2xl ">
+        <div className="rounded-xl bg-white w-80 shadow-md hover:shadow-2xl text-center p-2 h-max px-4">
           <Heading label={"Sign in"} />
           <Subheading label={"enter your credentials to access your account"} />
           <InputBox

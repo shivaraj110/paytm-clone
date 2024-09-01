@@ -3,6 +3,8 @@ import Button from "./Button";
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "../atoms/userAtom";
 import { authFlag } from "../atoms/authFlag";
+import LogoutBtn from "./LogoutBtn";
+import CancelBtn from "./CancelBtn";
 export default function Logout() {
   const nav = useNavigate();
   const setAuthFlag = useSetRecoilState(authFlag);
@@ -29,23 +31,17 @@ export default function Logout() {
             click logout again to logout or cancel to go back
           </div>
           <div className="grid grid-cols-2">
-            <div className="px-1">
-              <Button
-                label={"logout"}
-                onClick={() => {
-                  localStorage.clear();
-                  nav("/signin");
-                  setAuthFlag((v) => (v = false));
-                }}
-              />
+            <div
+              className="px-1"
+              onClick={() => {
+                localStorage.clear();
+                nav("/signin");
+                setAuthFlag((v) => (v = false));
+              }}>
+              <LogoutBtn />
             </div>
-            <div className="px-1">
-              <Button
-                label={"cancel"}
-                onClick={() => {
-                  nav("./");
-                }}
-              />
+            <div className="px-1 ">
+              <CancelBtn />
             </div>
           </div>
         </div>

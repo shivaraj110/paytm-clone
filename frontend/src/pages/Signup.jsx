@@ -21,7 +21,7 @@ export default function Signup() {
   return (
     <div className="bg-slate-300 h-screen flex justify-center items-center">
       <div className="felx flex-col justify-center ">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+        <div className="rounded-xl bg-white w-80 shadow-md hover:shadow-2xl text-center p-2 h-max px-4">
           <Heading label={"Sign up"} />
           <Subheading label={"enter your information to create an account"} />
           <InputBox
