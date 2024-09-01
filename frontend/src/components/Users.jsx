@@ -77,7 +77,6 @@ function User({ user }) {
             {user.firstName} {user.lastName}
           </div>
         </div>
-
       </div>
 
       <div className="flex flex-col justify-center h-ful mr-52  pr-5">

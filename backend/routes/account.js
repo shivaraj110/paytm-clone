@@ -24,11 +24,9 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     const amt = Number(req.body.ammount);
     const fromAcc = await BankAccount.findOne({
       userId: req.userId,
-    }).session(session);
-    const hasPin = await BankAccount.findOne({
       pin: req.body.pin,
-    });
-    if (!fromAcc || fromAcc.balance < amt || !hasPin._id) {
+    }).session(session);
+    if (!fromAcc || fromAcc.balance < amt) {
       await session.abortTransaction();
       return res.status(400).json({
         msg: "no account found or insufficient balance or incorrect pin",
