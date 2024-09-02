@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { currUserBalAtom } from "../atoms/currUserBal";
 import { authFlag } from "../atoms/authFlag";
+import { curruserAtom } from "../atoms/userAtom";
 
 export default function Signup() {
   const nav = useNavigate();
@@ -18,6 +19,7 @@ export default function Signup() {
   const [password, setPass] = useState("");
   const [bal, setBal] = useRecoilState(currUserBalAtom);
   const setAuthFlag = useSetRecoilState(authFlag);
+  const setCurrUser = useSetRecoilState(curruserAtom);
   return (
     <div className="bg-slate-300 h-screen flex justify-center items-center">
       <div className="felx flex-col justify-center ">
@@ -74,6 +76,15 @@ export default function Signup() {
                           username +
                           "&lname=" +
                           lastName
+                      ) &
+                      setCurrUser(
+                        (u) =>
+                          (u = {
+                            fname: firstName,
+                            lname: lastName,
+                            email: username,
+                            pass: password,
+                          })
                       ) &
                       setBal(res.data.balance)
                     : null;

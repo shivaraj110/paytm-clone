@@ -2,12 +2,14 @@ import { useSearchParams } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { Balance } from "../components/Balance";
 import { Users } from "../components/Users";
+import { useRecoilValue } from "recoil";
+import { curruserAtom } from "../atoms/userAtom";
 
 export default function Dashboard() {
-  const [searchParams] = useSearchParams();
-  const email = searchParams.get("email");
-  const lname = searchParams.get("lname");
-  const name = searchParams.get("name");
+  const currUser = useRecoilValue(curruserAtom);
+  const email = currUser.email;
+  const lname = currUser.lname;
+  const name = currUser.fname;
   const props = {
     email: email,
     lname: lname,
@@ -16,7 +18,13 @@ export default function Dashboard() {
     <div>
       <Appbar name={name} props={props} />
       <Balance />
-      <Users />
+      <Users
+        props={{
+          name,
+          lname,
+          email,
+        }}
+      />
     </div>
   );
 }

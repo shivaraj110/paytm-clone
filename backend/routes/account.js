@@ -72,7 +72,7 @@ router.post("/setpin", authMiddleware, async (req, res) => {
   try {
     await BankAccount.updateOne(
       {
-        userId: req.userId,
+        userId: req.userId, 
       },
       {
         pin: req.body.pin,

@@ -2,7 +2,7 @@ import { useBal } from "../hooks/useBal";
 export const Balance = () => {
   const value = useBal(6);
   return (
-    <div className="flex mt-20">
+    <div className="flex mt-20 mb-10">
       <div className="font-bold text-lg pl-3">Your balance</div>
 
       {!value.loading ? (

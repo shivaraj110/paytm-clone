@@ -8,11 +8,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { authFlag } from "../atoms/authFlag";
+import { curruserAtom } from "../atoms/userAtom";
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPass] = useState("");
   const nav = useNavigate();
   const setAuthFlag = useSetRecoilState(authFlag);
+  const setCurrUser = useSetRecoilState(curruserAtom);
   return (
     <div className="bg-slate-300 h-screen flex justify-center items-center ">
       <div className="felx flex-col justify-center shadow-md hover:shadow-2xl ">
@@ -52,13 +54,15 @@ export default function Signin() {
                   }
                 );
                 alert(res.data.msg);
-                nav(
-                  "/dashboard?name=" +
-                    res.data.fname +
-                    "&email=" +
-                    username +
-                    "&lname=" +
-                    res.data.lname
+                nav("/dashboard");
+                setCurrUser(
+                  (u) =>
+                    (u = {
+                      fname: res.data.fname,
+                      lname: res.data.lname,
+                      email: username,
+                      pass:password
+                    })
                 );
                 localStorage.setItem("token", res.data.token);
                 setAuthFlag((v) => (v = true));
