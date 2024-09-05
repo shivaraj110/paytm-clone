@@ -1,26 +1,23 @@
 const { JWT_SECRET } = require("./config");
-const jwt = require('jsonwebtoken');
+const webToken = require("jsonwebtoken");
 
-
-
-const authMiddleware  = async(req,res,next) => {
-const  authHeader  = req.headers.authorization
-if (!authHeader || !authHeader.startsWith('Bearer ')) {
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(403).json({});
-}
-const token = authHeader.split(' ')[1]
-try{   
-    const verified = jwt.verify(token,JWT_SECRET)
-    req.userId = verified.userId
-    next()
- }
-catch(err){
+  }
+  const token = authHeader.split(" ")[1];
+  try {
+    const verified = webToken.verify(token, JWT_SECRET);
+    req.userId = verified.userId;
+    next();
+  } catch (err) {
     return res.status(400).json({
-    msg : 'something went wrong!'
-        })
-    }
-}
+      msg: "something went wrong!",
+    });
+  }
+};
 
 module.exports = {
-    authMiddleware
-}
+  authMiddleware,
+};
