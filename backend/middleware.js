@@ -1,6 +1,5 @@
-const { JWT_SECRET } = require("./config");
-const webToken = require("jsonwebtoken");
-
+const { JWT_SECRET } = env(JWT_SECRET);
+import webToken from "jsonwebtoken";
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
